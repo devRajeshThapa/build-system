@@ -6,6 +6,10 @@
 
 void create_folder(char *path){
 	if(mkdir(path, 0755) == -1){
+		if(errno == EEXIST){
+			fprintf(stderr, "Directory '%s' already exists.\n", path);
+			exit(EXIT_FAILURE);
+		}
 		perror("mkdir");
 		exit(EXIT_FAILURE);
 	}
@@ -47,16 +51,17 @@ void setup_template(char *project_name){
 	  "[package]\n"
 	  "name = \"%s\"\n"
 	  "version = \"0.1.0\"\n"
-	  "authors = []\n"
+	  "author = \"\"\n"
 	  "description = \"\"\n"
 	  "license = \"\"\n\n"
-	  "[dependencies]\n"
-	  "devrajeshthapa/dotenv",
+	  "dependencies = [\n"
+	  "\t\"devrajeshthapa/dotenv\",\n"
+	  "]",
 	  project_name);	
 	create_file(path, buffer);
 
 	snprintf(path, sizeof(path), "%s/.env", project_name);	
-	create_file(path,"");
+	create_file(path,"# Environment variables go here\n");
 
 	snprintf(path, sizeof(path), "%s/README.md", project_name);	
 	snprintf(buffer, sizeof(buffer),

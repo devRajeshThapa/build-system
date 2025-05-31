@@ -1,0 +1,10 @@
+[package]
+name = "rumi"
+version = "0.1.0"
+author = ""
+description = ""
+license = ""
+
+dependencies = [
+	"devrajeshthapa/dotenv",
+]

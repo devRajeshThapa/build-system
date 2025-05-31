@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(include)
 
-add_executable(loki src/main.c src/setup.c)
+add_executable(loki src/main.c src/setup.c src/package.c)
 
 install(TARGETS loki RUNTIME DESTINATION bin)
 

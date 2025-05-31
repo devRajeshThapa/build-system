@@ -1,0 +1,8 @@
+# Ignore dependencies
+dependencies/
+
+# Ignore compiled binaries and build artifacts
+dist/
+
+# Ignore environment variables
+.env
